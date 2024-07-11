@@ -46,6 +46,11 @@
                                 <li class="nav-item d_none">
                                     <a class="nav-link" href="<?= BASE_URL_ADM ?>">Login</a>
                                 </li>
+                                <!-- 
+                                <li class="nav-item d_none">
+                                    <a class="nav-link" href="<?= BASE_URL_ADM ?>?act=logout">Logout</a>
+
+                                </li> -->
                             </ul>
                         </div>
                     </nav>

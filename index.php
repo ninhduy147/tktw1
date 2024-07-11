@@ -5,6 +5,7 @@ require_once './common/env.php';
 require_once './common/helper.php';
 require_once './common/connect-db.php';
 require_once './common/model.php';
+// require_file(PATH_CONTROLLER_ADMIN);
 
 require_file(PATH_CONTROLLER);
 require_file(PATH_MODEL);
@@ -13,9 +14,10 @@ require_file(PATH_MODEL);
 
 $act = $_GET['act'] ?? '/';
 
-$result = match (true) {
-    $act === '/' => homeIndex(),
-    $act === 'cart' => cartIndex(),
+$result = match ($act) {
+    '/' => homeIndex(),
+    'cart' => cartIndex(),
+    // 'logout' => authenLogout(),
 };
 
 

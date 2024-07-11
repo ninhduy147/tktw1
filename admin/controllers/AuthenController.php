@@ -8,6 +8,7 @@ function authenShowFormLogin()
 
     require_once PATH_VIEW_ADMIN . 'authen/login.php';
 }
+
 function authenLogin()
 {
     // Kiểm tra xem có tồn tại và không rỗng
@@ -25,21 +26,21 @@ function authenLogin()
         header('location: ' . BASE_URL_ADM . '?act=login');
         exit();
     }
-
-    // Đăng nhập thành công
+    // Lưu thông tin người dùng vào session
     $_SESSION['customer'] = $customer;
-    var_dump($customer);
-    die;
+
     header('location:' . BASE_URL_ADM);
+
     exit();
 }
+
 
 function authenLogout()
 {
     // Kiểm tra nếu phiên đăng nhập tồn tại
     if (!empty($_SESSION['customer'])) {
         // Unset tất cả các biến session
-        $_SESSION = array();
+        $_SESSION = [];
 
         // Nếu có cookie, hủy cả cookie session
         if (ini_get("session.use_cookies")) {
@@ -57,6 +58,7 @@ function authenLogout()
 
         // Hủy session
         session_destroy();
+        session_unset();
     }
 
     // Chuyển hướng người dùng về trang chủ hoặc trang đăng nhập

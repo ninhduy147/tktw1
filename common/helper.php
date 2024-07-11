@@ -26,18 +26,25 @@ if (!function_exists('e404')) {
         die;
     }
 }
+
 if (!function_exists('middleware_auth_check')) {
     function middleware_auth_check($act)
     {
         // Nếu hành động là 'login' và phiên đã được đăng nhập, chuyển hướng về trang admin
-        if ($act === 'login' && !empty($_SESSION['customer'])) {
+        if ($act == 'login' && !empty($_SESSION['customer'])) {
             header('location: ' . BASE_URL_ADM);
             exit();
         }
 
         // Nếu không có phiên đăng nhập và hành động không phải 'login', chuyển hướng đến trang đăng nhập
-        if (empty($_SESSION['customer']) && $act !== 'login') {
+        elseif (empty($_SESSION['customer']) && $act !== 'login') {
             header('location: ' . BASE_URL_ADM . '?act=login');
+            exit();
+        }
+
+        // Nếu người dùng đăng nhập nhưng role_id = 2, chuyển hướng về trang chủ
+        elseif (!empty($_SESSION['customer']) && $_SESSION['customer']['role_id'] === 2) {
+            header('location: ' . BASE_URL);
             exit();
         }
     }
