@@ -4,6 +4,20 @@
     <h1 class="h3 mb-2 text-gray-800"><?= $title ?>
         <a href="<?= BASE_URL_ADM ?>?act=customers_create" class="btn btn-primary">Create</a>
     </h1>
+    <?php if (isset($_SESSION['success'])) : ?>
+        <div class="alert alert-success">
+            <ul>
+                <?php foreach ($_SESSION['success'] as $seccess) : ?>
+                    <li style="
+                                list-style: none;
+                                margin-top: 10px;
+                                "><?= $seccess  ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -35,7 +49,7 @@
 
                     <tbody>
                         <?php
-                        $stt = 1; 
+                        $stt = 1;
                         foreach ($customer as $val) :
                         ?>
 

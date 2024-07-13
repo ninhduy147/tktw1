@@ -2,6 +2,20 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800"><?= $title ?>
+        <?php if (isset($_SESSION['success'])) : ?>
+            <div class="alert alert-success">
+                <ul>
+                    <?php foreach ($_SESSION['success'] as $seccess) : ?>
+                        <li style="
+                                list-style: none;
+                                margin-top: 10px;
+                                "><?= $seccess  ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
     </h1>
 
     <!-- DataTales Example -->

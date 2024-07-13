@@ -30,7 +30,15 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="<?= BASE_URL_ADM ?>?act=customers" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Danh Sách Người Dùng</span>
+            <span>Quản Lý Người Dùng</span>
+        </a>
+
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="<?= BASE_URL_ADM ?>?act=products" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Quản Lý Sản Phẩm</span>
         </a>
 
     </li>
