@@ -129,6 +129,35 @@ if (!function_exists('update')) {
 }
 
 
+//UPDATE PRODUCTS
+if (!function_exists('updateProduct')) {
+    function updateProduct($tableName, $id, $data = [])
+    {
+        try {
+            $setParams = get_set_params($data);
+            $sql = "
+                UPDATE $tableName 
+                SET   $setParams
+                WHERE customer_id = :customer_id
+            ";
+
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+            foreach ($data as $key => &$val) {
+                $stmt->bindParam(":$key", $val);
+            }
+
+            // Thêm dấu : vào trước customer_id
+            $stmt->bindParam(":customer_id", $id);
+
+            $stmt->execute();
+        } catch (\Exception $e) {
+            // Xử lý ngoại lệ ở đây
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}
+
+
 //DELETE CUSTOMERS
 if (!function_exists('deleteCustomer')) {
     function deleteCustomer($tableName, $id, $data = [])
@@ -145,6 +174,31 @@ if (!function_exists('deleteCustomer')) {
 
             // Thêm dấu : vào trước customer_id
             $stmt->bindParam(":customer_id", $id);
+
+            $stmt->execute();
+        } catch (\Exception $e) {
+            // Xử lý ngoại lệ ở đâys
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}
+
+//DELETE PRODUCTS
+if (!function_exists('deleteProduct')) {
+    function deleteProduct($tableName, $id, $data = [])
+    {
+        try {
+            // $setParams = get_set_params($datas);
+            $sql = "
+                DELETE 
+                FROM $tableName
+                WHERE product_id = :product_id
+            ";
+
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+
+            // Thêm dấu : vào trước product_id
+            $stmt->bindParam(":product_id", $id);
 
             $stmt->execute();
         } catch (\Exception $e) {

@@ -52,13 +52,15 @@
                   <label class="form-check-label" for="form1Example3"> Remember password </label>
                 </div>
 
-                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" name="login" type="submit">Login</button>
 
               </form>
               <hr class="my-4">
               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39; margin-bottom: 10px;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
               <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;" type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
-
+              <div class="text-center mt-4">
+                <a class="small" href="<?= BASE_URL_ADM ?>?act=register">Chưa có tài khoản? Ấn vào đây để tạo tài khoản!</a>
+              </div>
             </div>
           </div>
         </div>

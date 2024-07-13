@@ -64,7 +64,7 @@ function customerCreate()
         insert('customers', $data);
 
 
-        $_SESSION['success'] = "Thao Tác Thành Công !";
+        $_SESSION['success'] = ["Thao Tác Thành Công !"];
 
         header('location: ' . BASE_URL_ADM . '?act=customers');
         exit();
@@ -95,6 +95,12 @@ function validateCreate($data)
         $errors[] = "Không Để trống password";
     } else if (strlen($data['password_customer']) < 8 || strlen($data['password_customer']) > 20) {
         $errors[] = "Trường password Độ Dài TỐi Đã 20 và nhỏ nhất 8 Kí tự !";
+    }
+
+    if (empty($data['phone_number'])) {
+        $errors[] = "Không Để trống Phone";
+    } else if (strlen($data['phone_number']) < 9 || strlen($data['phone_number']) > 13) {
+        $errors[] = "Nhập Đúng Số Điện Thoại!";
     }
 
     if (empty($data['role_id'])) {
@@ -150,6 +156,7 @@ function customerUpdate($id)
             "password_customer" => $_POST['password_customer'] ?? NULL,
             "email_customer" => $_POST['email_customer'] ?? NULL,
             "phone_number" => $_POST['phone_number'] ?? NULL,
+            "address" => $_POST['address'] ?? NULL,
             "role_id" => $_POST['role_id'] ?? NULL,
             "image_customer" => $image_customer, // Gán giá trị của biến $image_customer vào mảng $data
         ];
@@ -159,7 +166,7 @@ function customerUpdate($id)
             $_SESSION['errors'] = $errors;
             $_SESSION['data'] = $data;
         } else {
-            $_SESSION['success'] = "Thao Tác THành Công !";
+            $_SESSION['success'] = ["Thao Tác THành Công !"];
             update('customers', $id, $data);
         }
 
@@ -215,7 +222,7 @@ function validateUpdate($id, $data)
 function customerDelete($id)
 {
     deleteCustomer('customers', $id);
-    $_SESSION['success'] = "Thao Tác THành Công !";
+    $_SESSION['success'] = ["Thao Tác THành Công !"];
 
     header('location: ' . BASE_URL_ADM . '?act=customers');
     exit();
