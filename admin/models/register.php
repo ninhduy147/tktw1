@@ -1,6 +1,5 @@
 <?php
 if (!function_exists('addUser')) {
-
     // Hàm thêm người dùng mới
     function addUser($name, $email, $phone_number, $address, $password)
     {
@@ -10,9 +9,9 @@ if (!function_exists('addUser')) {
 
         // Giả sử $conn là biến kết nối cơ sở dữ liệu đã được thiết lập
 
-        // Chuẩn bị câu lệnh SQL để chèn dữ liệu và o cơ sở dữ liệu
+        // Chuẩn bị câu lệnh SQL để chèn dữ liệu vào cơ sở dữ liệu
         $sql = "INSERT INTO customers (name_customer, email_customer, phone_number, address, password_customer, role_id) 
-            VALUES (:name, :email, :phone_number, :address, :password, :role_id)";
+            VALUES (:name_customer, :email_customer, :phone_number, :address, :password_customer, :role_id)";
 
         // Sử dụng prepare statement để chuẩn bị câu lệnh SQL
         $stmt = $GLOBALS['conn']->prepare($sql);
@@ -29,6 +28,7 @@ if (!function_exists('addUser')) {
         return $stmt->execute();
     }
 }
+
 
 
 function checkEmailExists($email)

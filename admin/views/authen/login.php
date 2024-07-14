@@ -52,7 +52,7 @@
                   <label class="form-check-label" for="form1Example3"> Remember password </label>
                 </div>
 
-                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" name="login" type="submit">Login</button>
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
 
               </form>
               <hr class="my-4">

@@ -38,27 +38,32 @@ if (!function_exists('checkUniqueEMailUpdate')) {
         }
     };
 };
-
-if (!function_exists('getUserAdminByEmailAndPassword')) {
-    function getUserAdminByEmailAndPassword($email_customer, $password_customer)
+if (!function_exists('getUserByEmailAndPassword')) {
+    function getUserByEmailAndPassword($email, $password, $role_id)
     {
         try {
-            // Nếu mật khẩu được băm, hãy băm mật khẩu trước khi so sánh
-            // $password_customer = md5($password_customer); // Sử dụng băm mật khẩu phù hợp, ví dụ: password_hash()
-
-            $sql = "SELECT * FROM customers WHERE email_customer = :email_customer AND password_customer = :password_customer AND role_id = 1 LIMIT 1";
+            // Truy vấn thông tin người dùng dựa trên email và role_id
+            $sql = "SELECT * FROM customers WHERE email_customer = :email_customer AND role_id = :role_id LIMIT 1";
 
             $stmt = $GLOBALS['conn']->prepare($sql);
-
-            $stmt->bindParam(":email_customer", $email_customer);
-            $stmt->bindParam(":password_customer", $password_customer);
+            $stmt->bindParam(":email_customer", $email);
+            $stmt->bindParam(":role_id", $role_id);
 
             $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (\Exception $e) {
+            // Nếu người dùng tồn tại, xác minh mật khẩu
+            if ($user && password_verify($password, $user['password_customer'])) {
+                // Mật khẩu đúng, đăng nhập thành công
+                return $user; // Trả về thông tin người dùng
+            } else {
+                // Mật khẩu hoặc email không đúng
+                return false;
+            }
+        } catch (Exception $e) {
             // Xử lý lỗi
             echo "Error: " . $e->getMessage();
+            return false;
         }
     }
 }

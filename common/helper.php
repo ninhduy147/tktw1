@@ -63,8 +63,7 @@ if (!function_exists('middleware_auth_check')) {
         // Nếu hành động là 'register', chuyển hướng đến trang đăng ký
         elseif ($act == 'register') {
 
-            header('location: ' . BASE_URL_ADM . '?act=register');
-            exit();
+            return;
         }
 
         // Nếu không có phiên đăng nhập và hành động không phải 'login' và 'register', chuyển hướng đến trang đăng nhập

@@ -26,7 +26,7 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5 d-none d-lg-block "><img src="/images/product1.png" alt=""></div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
@@ -34,6 +34,12 @@
                             </div>
                             <!-- FORM -->
                             <form class="user" action="" method="POST">
+                                <?php if (isset($_SESSION['errors'])) : ?>
+                                    <div class="alert alert-danger">
+                                        <?= $_SESSION['errors'] ?>
+                                    </div>
+                                    <?php unset($_SESSION['errors']) ?>
+                                <?php endif; ?>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" name="name_customer" class="form-control form-control-user" id="exampleFirstName" placeholder="Name" required>
@@ -56,7 +62,7 @@
                                         <input type="password" name="confirm_password_customer" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" required>
                                     </div>
                                 </div>
-                                <button type="submit" name="add" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </button>
                                 <hr>
@@ -72,7 +78,7 @@
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="<?= BASE_URL_ADM ?>">Already have an account? Login!</a>
                             </div>
                             <div id="message">
                                 <?php
