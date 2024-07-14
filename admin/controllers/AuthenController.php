@@ -2,7 +2,7 @@
 
 function authenShowFormLogin()
 {
-    if (!empty($_POST['login'])) {
+    if (!empty($_POST)) {
         authenLogin();
     }
 
@@ -14,7 +14,7 @@ function authenShowFormLogin()
 function authenShowFormRegister()
 {
 
-    if (!empty($_POST['add'])) {
+    if (!empty($_POST)) {
         authenRegister(); // Thay đổi để gọi hàm authenRegister khi submit form
     }
 
@@ -31,21 +31,30 @@ function authenLogin()
         exit();
     }
 
-    // Tiếp tục xử lý đăng nhập
-    $customer = getUserAdminByEmailAndPassword($_POST['email_customer'], $_POST['password_customer']);
+    // Tiếp tục xử lý đăng nhập cho admin
+    $admin = getUserByEmailAndPassword($_POST['email_customer'], $_POST['password_customer'], 1);
 
-    if (empty($customer)) {
-        $_SESSION['errors'] = 'Email hoặc Mật khẩu chưa đúng!';
-        header('location: ' . BASE_URL_ADM . '?act=login');
+    if ($admin) {
+        $_SESSION['customer'] = $admin;
+        header('location:' . BASE_URL_ADM);
         exit();
     }
-    // Lưu thông tin người dùng vào session
-    $_SESSION['customer'] = $customer;
 
-    header('location:' . BASE_URL_ADM);
+    // Tiếp tục xử lý đăng nhập cho customer
+    $customer = getUserByEmailAndPassword($_POST['email_customer'], $_POST['password_customer'], 2);
 
+    if ($customer) {
+        $_SESSION['customer'] = $customer;
+        header('location:' . BASE_URL);
+        exit();
+    }
+
+    // Nếu không đúng email hoặc mật khẩu
+    $_SESSION['errors'] = 'Email hoặc Mật khẩu chưa đúng!';
+    header('location: ' . BASE_URL_ADM . '?act=login');
     exit();
 }
+
 
 function authenRegister()
 {
