@@ -13,6 +13,13 @@ define('PATH_VIEW_ADMIN', __DIR__ . '/../admin/views/');
 define('BASE_URL', 'http://localhost/TKTW1/');
 define('BASE_URL_ADM', 'http://localhost/TKTW1/admin/');
 
+define('STATUS_DRAFT', '6');
+define('STATUS_PUBLIC', '5');
+
+define('STATUS_SamSung', '1');
+define('STATUS_IPhone', '2');
+define('STATUS_BPhone', '3');
+
 define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');
 define('DB_USERNAME', 'root');

@@ -50,14 +50,17 @@ if (!function_exists('e404')) {
 //     }
 // }
 
+
 if (!function_exists('middleware_auth_check')) {
-    function middleware_auth_check($act)
+    function middleware_auth_check($act, $arrRounteNeedAuth)
     {
 
         // Nếu hành động là 'login' và phiên đã được đăng nhập, chuyển hướng về trang admin
-        if ($act == 'login' && !empty($_SESSION['customer'])) {
-            header('location: ' . BASE_URL_ADM);
-            exit();
+        if ($act == 'login' && !isset($arrRounteNeedAuth)) {
+            if (!empty($_SESSION['customer'])) {
+                header('location: ' . BASE_URL_ADM);
+                exit();
+            }
         }
 
         // Nếu hành động là 'register', chuyển hướng đến trang đăng ký
@@ -65,16 +68,12 @@ if (!function_exists('middleware_auth_check')) {
 
             return;
         }
-
+        //$act !== 'login'
         // Nếu không có phiên đăng nhập và hành động không phải 'login' và 'register', chuyển hướng đến trang đăng nhập
-        elseif (empty($_SESSION['customer']) && $act !== 'login') {
-            header('location: ' . BASE_URL_ADM . '?act=login');
-            exit();
-        }
 
         // Nếu người dùng đăng nhập nhưng role_id = 2, chuyển hướng về trang chủ
-        elseif (!empty($_SESSION['customer']) && $_SESSION['customer']['role_id'] === 2) {
-            header('location: ' . BASE_URL);
+        elseif (empty($_SESSION['customer']) && in_array($act, $arrRounteNeedAuth)) {
+            header('location: ' . BASE_URL . '?act=login');
             exit();
         }
     }

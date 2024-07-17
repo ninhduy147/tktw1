@@ -60,6 +60,32 @@ if (!function_exists('insert')) {
     }
 }
 
+if (!function_exists('insert_get_last_id')) {
+    function insert_get_last_id($tableName, $data = [])
+    {
+        try {
+            $strKey = get_str_key($data);
+            $virtualParams = get_virtual_params($data);
+            $sql = "INSERT INTO `$tableName` ($strKey) VALUES ($virtualParams)";
+
+            $stmt = $GLOBALS['conn']->prepare($sql);
+
+            foreach ($data as $key => &$val) {
+
+                $stmt->bindParam(":$key", $val);
+            }
+
+
+
+            $stmt->execute();
+            return $GLOBALS['conn']->lastInsertID();
+        } catch (\Exception $e) {
+            // Xử lý ngoại lệ ở đây
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}
+
 
 //READ All
 if (!function_exists('listAll')) {
@@ -81,14 +107,34 @@ if (!function_exists('listAll')) {
 
 
 // READ DETAIL  CUSTOMER
-if (!function_exists('showOne')) {
-    function showOne($tableName, $id)
+if (!function_exists('showOneCustomer')) {
+    function showOneCustomer($tableName, $id)
     {
         try {
             $sql = "SELECT * FROM $tableName WHERE customer_id = :customer_id LIMIT 1";
 
             $stmt =  $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(":customer_id", $id);
+
+            $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    };
+};
+
+
+// READ DETAIL  PRODUCTS
+if (!function_exists('showOneProduct')) {
+    function showOneProduct($tableName, $id)
+    {
+        try {
+            $sql = "SELECT * FROM $tableName WHERE product_id = :product_id LIMIT 1";
+
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":product_id", $id);
 
             $stmt->execute();
 
@@ -138,7 +184,7 @@ if (!function_exists('updateProduct')) {
             $sql = "
                 UPDATE $tableName 
                 SET   $setParams
-                WHERE customer_id = :customer_id
+                WHERE product_id = :product_id
             ";
 
             $stmt =  $GLOBALS['conn']->prepare($sql);
@@ -146,8 +192,8 @@ if (!function_exists('updateProduct')) {
                 $stmt->bindParam(":$key", $val);
             }
 
-            // Thêm dấu : vào trước customer_id
-            $stmt->bindParam(":customer_id", $id);
+            // Thêm dấu : vào trước product_id
+            $stmt->bindParam(":product_id", $id);
 
             $stmt->execute();
         } catch (\Exception $e) {

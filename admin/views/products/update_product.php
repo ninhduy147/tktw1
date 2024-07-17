@@ -28,20 +28,19 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 mt-3">
-                            <label for="name_customer" class="form-label">Name:</label>
-                            <input type="text" value="<?= $customer['name_customer'] ?>" class="form-control" id="name_customer" placeholder="Enter Name" name="name_customer">
+                            <label for="name_product" class="form-label">Name:</label>
+                            <input type="text" class="form-control" id="name_product" value="<?= $product['name_product'] ?>" placeholder="Enter Name" name="name_product">
                         </div>
 
                         <div class="mb-3 mt-3">
-                            <label for="email_customer" class="form-label">Email:</label>
-                            <input type="email" value="<?= $customer['email_customer'] ?>" class="form-control" id="email_customer" placeholder="Enter Email" name="email_customer">
+                            <label for="price" class="form-label">Price:</label>
+                            <input type="price" class="form-control" id="price" value="<?= $product['price'] ?>" placeholder="Enter Price" name="price">
                         </div>
 
                         <div class="mb-3 mt-3">
-                            <label for="password_customer" class="form-label">Password:</label>
-                            <input type="password" value="<?= $customer['password_customer'] ?>" class="form-control" id="password_customer" placeholder="Enter Password" name="password_customer">
+                            <label for="voucher" class="form-label">Voucher:</label>
+                            <input type="voucher" class="form-control" id="voucher" value="<?= $product['voucher'] ?>" placeholder="Enter Voucher" name="voucher">
                         </div>
-
 
 
 
@@ -49,38 +48,38 @@
                     <div class="col-md-6">
 
 
-
                         <div class="mb-3 mt-3">
-                            <label for="phone_number" class="form-label">Phone:</label>
-                            <input type="number" value="<?= $customer['phone_number'] ?>" class="form-control" id="phone_number" placeholder="Enter Phone" name="phone_number">
-                        </div>
-
-
-                        <div class="mb-3 mt-3">
-                            <label for="address" class="form-label">Address:</label>
-                            <input type="text" value="<?= $customer['address'] ?>" class="form-control" id="address" placeholder="Enter Address" name="address">
+                            <label for="quantity" class="form-label">Quantity:</label>
+                            <input type="text" class="form-control" id="quantity" value="<?= $product['quantity'] ?>" placeholder="Enter Quantity" name="quantity">
                         </div>
 
                         <div class="mb-3 mt-3">
-                            <label for="role_id" class="form-label">Role:</label>
-                            <select name="role_id" id="role_id">
+                            <label for="description" class="form-label">Description:</label>
+                            <input type="text" class="form-control" id="summernote" value="<?= $product['description'] ?>" placeholder="Enter Description" name="description">
+                        </div>
+
+                        <div class="mb-3 mt-3">
+                            <label for="category_id" class="form-label">Category:</label>
+                            <select name="category_id" id="category_id">
                                 <option value="">--Chọn--</option>
-                                <option <?= $customer['role_id'] == 1 ? 'selected' : NULL ?> value="1">Admin</option>
-                                <option <?= $customer['role_id'] == 2 ? 'selected' : NULL ?> value="2">Customer</option>
+                                <option <?= $product['category_id'] == 1 ? 'selected' : NULL ?> value="1">SamSung</option>
+                                <option <?= $product['category_id'] == 2 ? 'selected' : NULL ?> value="2">IPhone</option>
                             </select>
                         </div>
 
                         <div class="mb-3 mt-3">
-                            <label for="image_customer" class="form-label">Image:</label>
-                            <input type="file" id="password_customer" name="image_customer">
+                            <label for="img_product" class="form-label">Image:</label>
+                            <input type="file" id="summernote" name="img_product">
                         </div>
+
 
                     </div>
                 </div>
 
 
+
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="<?= BASE_URL_ADM ?>?act=customers" class="btn btn-danger">Back To List</a>
+                <a href="<?= BASE_URL_ADM ?>?act=products" class="btn btn-danger">Back To List</a>
 
             </form>
         </div>

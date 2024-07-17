@@ -12,21 +12,15 @@
                     <th>Trường Dữ Liệu</th>
                     <th>Dữ Liệu</th>
                 </tr>
-                <?php foreach ($customer as $fileName => $values) : ?>
+                <?php foreach ($product as $fileName => $values) : ?>
                     <tr>
                         <th><?= ucfirst($fileName) ?></th>
                         <th>
                             <?php
                             switch ($fileName) {
-                                case 'password_customer':
-                                    echo '**********';
-                                    break;
 
-                                case 'role_id':
-                                    echo $values == 1 ? '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-success">Admin</span>' : '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-warning">Customer</span>';
-                                    break;
-                                case 'image_customer':
-                                    echo '<img style="width: 70px; height: 70px;" src="' . $values . '" alt="Customer Image">';
+                                case 'img_product':
+                                    echo '<img style="width: 70px; height: 70px;" src="' . $values . '" alt="">';
                                     break;
 
                                 default:
@@ -39,7 +33,7 @@
 
                 <?php endforeach ?>
             </table>
-            <a href="<?= BASE_URL_ADM ?>?act=customers" class="btn btn-danger">Back To List</a>
+            <a href="<?= BASE_URL_ADM ?>?act=products" class="btn btn-danger">Back To List</a>
         </div>
     </div>
 
