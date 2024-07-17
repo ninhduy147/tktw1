@@ -29,7 +29,7 @@ $arrRounteNeedAuth = [
 ];
 
 // Kiểm tra đăng nhập chưa
-middleware_auth_check($act, $arrRounteNeedAuth); // Truyền đủ hai tham số
+customer_middleware_auth_check($act, $arrRounteNeedAuth); // Truyền đủ hai tham số
 
 $result = match ($act) {
     '/' => homeIndex(),

@@ -13,7 +13,7 @@ require_file(PATH_MODEL_ADMIN);
 // Điều Hướng
 $act = $_GET['act'] ?? '/'; // Sử dụng ?? để gán mặc định là '/'
 
-middleware_auth_check($act);
+admin_middleware_auth_check($act);
 
 
 $result = match ($act) {
