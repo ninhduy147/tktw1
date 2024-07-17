@@ -59,10 +59,10 @@
                                 <td><?= $val['phone_number'] ?></td>
                                 <td><?= $val['role_id'] == 2 ? '<span class="badge badge-warning">Customer</span>' : ($val['role_id'] == 1 ? '<span class="badge badge-success">Admin</span>' : '<span class="badge badge-secondary">Unknown</span>') ?>
                                 </td>
-                                <td><?= $val['name_customer'] ?></td>
+                                <td><?= $val['address'] ?></td>
                                 <td>
                                     <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=customers_detail&id=<?= $val['customer_id'] ?>">Show</a>
-                                    <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=customers_update&id=<?= $val['customer_id'] ?>">Update</a>
+                                    <a class="btn btn-warning" href="<?= BASE_URL_ADM ?>?act=customers_update&id=<?= $val['customer_id'] ?>">Update</a>
                                     <a class="btn btn-danger" onclick="return confirm('Bạn Có Muốn Xóa ?')" href="<?= BASE_URL_ADM ?>?act=customers_delete&id=<?= $val['customer_id'] ?>">Delete</a>
 
                                 </td>

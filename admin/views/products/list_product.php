@@ -2,7 +2,7 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800"><?= $title ?>
-        <a href="<?= BASE_URL_ADM ?>?act=customers_create" class="btn btn-primary">Create</a>
+        <a href="<?= BASE_URL_ADM ?>?act=products_create" class="btn btn-primary">Create</a>
     </h1>
     <?php if (isset($_SESSION['success'])) : ?>
         <div class="alert alert-success">
@@ -41,7 +41,7 @@
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Role</th>
-                            <th>Image</th>
+                            <th>Quantity</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -50,20 +50,20 @@
                     <tbody>
                         <?php
                         $stt = 1;
-                        foreach ($customer as $val) :
+                        foreach ($product as $val) :
                         ?>
 
                             <tr>
                                 <td><?= $stt++ ?></td>
-                                <td><?= $val['name_customer'] ?></td>
-                                <td><?= $val['phone_number'] ?></td>
-                                <td><?= $val['role_id'] == 2 ? '<span class="badge badge-warning">Customer</span>' : ($val['role_id'] == 1 ? '<span class="badge badge-success">Admin</span>' : '<span class="badge badge-secondary">Unknown</span>') ?>
+                                <td><?= $val['name_product'] ?></td>
+                                <td><?= $val['price'] ?></td>
+                                <td><?= $val['description'] ?>
                                 </td>
-                                <td><?= $val['name_customer'] ?></td>
+                                <td><?= $val['quantity'] ?></td>
                                 <td>
-                                    <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=customers_detail&id=<?= $val['customer_id'] ?>">Show</a>
-                                    <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=customers_update&id=<?= $val['customer_id'] ?>">Update</a>
-                                    <a class="btn btn-danger" onclick="return confirm('Bạn Có Muốn Xóa ?')" href="<?= BASE_URL_ADM ?>?act=customers_delete&id=<?= $val['customer_id'] ?>">Delete</a>
+                                    <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=products_detail&id=<?= $val['product_id'] ?>">Show</a>
+                                    <a class="btn btn-warning" href="<?= BASE_URL_ADM ?>?act=products_update&id=<?= $val['product_id'] ?>">Update</a>
+                                    <a class="btn btn-danger" onclick="return confirm('Bạn Có Muốn Xóa ?')" href="<?= BASE_URL_ADM ?>?act=products_delete&id=<?= $val['product_id'] ?>">Delete</a>
 
                                 </td>
                             </tr>

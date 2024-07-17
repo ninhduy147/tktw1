@@ -2,21 +2,21 @@
 
 function productListAll()
 {
-    $title = 'Danh Sách products';
+    $title = 'Danh Sách Products';
     $view = 'products/list_product';
 
-    $customer = listAll('products');
+    $product = listAll('products');
 
     require_once PATH_VIEW_ADMIN . 'layouts/master.php';
 }
 
 function productDetail($id)
 {
-    $customer = showOne('products', $id);
-    if (empty($customer)) {
+    $product = showOneProduct('products', $id);
+    if (empty($product)) {
         e404();
     }
-    $title = 'Chi Tiết products' . $customer['name_customer'];
+    $title = 'Chi Tiết Products : ' . $product['name_product'];
     $view = 'products/detail_product';
 
 
@@ -25,17 +25,17 @@ function productDetail($id)
 
 function productCreate()
 {
-    $title = 'Tạo products';
+    $title = 'Tạo Products';
     $view = 'products/create_product';
     if (!empty($_POST)) {
-        $image_customer = null; // Khởi tạo biến $image_customer để sử dụng trong phần xử lý tải lên ảnh
+        $img_product = null; // Khởi tạo biến $img_product để sử dụng trong phần xử lý tải lên ảnh
 
-        if (isset($_FILES['image_customer']) && $_FILES['image_customer']['error'] == UPLOAD_ERR_OK) {
+        if (isset($_FILES['img_product']) && $_FILES['img_product']['error'] == UPLOAD_ERR_OK) {
             $dir = "../uploads/";
             $up_name = time() . ".jpg";
             $upfile = $dir . $up_name;
-            if (move_uploaded_file($_FILES['image_customer']['tmp_name'], $upfile)) {
-                $image_customer = $upfile;
+            if (move_uploaded_file($_FILES['img_product']['tmp_name'], $upfile)) {
+                $img_product = $upfile;
             } else {
                 echo 'Failed to move uploaded file.';
                 exit();
@@ -43,13 +43,12 @@ function productCreate()
         }
 
         $data = [
-            "name_customer" => $_POST['name_customer'] ?? NULL,
-            "password_customer" => $_POST['password_customer'] ?? NULL,
-            "email_customer" => $_POST['email_customer'] ?? NULL,
-            "phone_number" => $_POST['phone_number'] ?? NULL,
-            "address" => $_POST['address'] ?? NULL,
-            "role_id" => $_POST['role_id'] ?? NULL,
-            "image_customer" => $image_customer, // Gán giá trị của biến $image_customer vào mảng $data
+            "name_product" => $_POST['name_product'] ?? NULL,
+            "price" => $_POST['price'] ?? NULL,
+            "quantity" => $_POST['quantity'] ?? NULL,
+            "category_id" => $_POST['category_id'] ?? NULL,
+            "description" => $_POST['description'] ?? NULL,
+            "img_product" => $img_product, // Gán giá trị của biến $img_product vào mảng $data
         ];
 
         $errors = validateCreateProduct($data);
@@ -77,35 +76,15 @@ function productCreate()
 function validateCreateProduct($data)
 {
     $errors = [];
-    if (empty($data['name_customer'])) {
+    if (empty($data['name_product'])) {
         $errors[] = "Không Để trống Name";
-    } else if (strlen($data['name_customer']) > 50) {
+    } else if (strlen($data['name_product']) > 50) {
         $errors[] = "Trường Name Độ Dài TỐi Đã 50 Kí tự !";
     }
 
-    if (empty($data['email_customer'])) {
-        $errors[] = "Không Để trống email";
-    } else if (!filter_var($data['email_customer'], FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Trường email Không đúng định dạng !";
-    } else if (!checkUniqueEMail('products', $data['email_customer'])) {
-        $errors[] = "Email đã được sử dụng !";
-    }
-
-    if (empty($data['password_customer'])) {
-        $errors[] = "Không Để trống password";
-    } else if (strlen($data['password_customer']) < 8 || strlen($data['password_customer']) > 20) {
-        $errors[] = "Trường password Độ Dài TỐi Đã 20 và nhỏ nhất 8 Kí tự !";
-    }
-
-    if (empty($data['phone_number'])) {
-        $errors[] = "Không Để trống Phone";
-    } else if (strlen($data['phone_number']) < 9 || strlen($data['phone_number']) > 13) {
-        $errors[] = "Nhập Đúng Số Điện Thoại!";
-    }
-
-    if (empty($data['role_id'])) {
+    if (empty($data['category_id'])) {
         $errors[] = "Không Để trống role";
-    } else if (!in_array($data['role_id'], [1, 2])) {
+    } else if (!in_array($data['category_id'], [1, 2])) {
         $errors[] = "Trường role phải 1 or 2!";
     }
 
@@ -116,49 +95,49 @@ function validateCreateProduct($data)
 function productUpdate($id)
 {
     // Lấy thông tin người dùng theo id
-    $customer = showOne('products', $id);
+    $product = showOneProduct('products', $id);
 
     // Kiểm tra nếu người dùng không tồn tại
-    if (empty($customer)) {
+    if (empty($product)) {
         e404();
     }
 
     // Lưu đường dẫn ảnh cũ
-    $old_image_customer = $customer['image_customer'];
+    $old_img_product = $product['img_product'];
 
-    $title = 'Update products' . $customer['name_customer'];
+    $title = 'Update Products : ' . $product['name_product'];
     $view = 'products/update_product';
     // Kiểm tra nếu có dữ liệu POST được gửi lên
     if (!empty($_POST)) {
 
-        // Kiểm tra nếu có file image_customer mới được tải lên
-        if (isset($_FILES['image_customer']) && $_FILES['image_customer']['error'] == UPLOAD_ERR_OK) {
+        // Kiểm tra nếu có file img_product mới được tải lên
+        if (isset($_FILES['img_product']) && $_FILES['img_product']['error'] == UPLOAD_ERR_OK) {
 
             $dir = "../uploads/";
             $up_name = time() . ".jpg";
             $upfile = $dir . $up_name;
-            if (move_uploaded_file($_FILES['image_customer']['tmp_name'], $upfile)) {
+            if (move_uploaded_file($_FILES['img_product']['tmp_name'], $upfile)) {
                 // Lưu đường dẫn ảnh mới
-                $image_customer = $upfile;
+                $img_product = $upfile;
             } else {
                 // Nếu không thể di chuyển tệp, sử dụng ảnh cũ
-                $image_customer = $old_image_customer;
+                $img_product = $old_img_product;
             }
         } else {
 
-            // Nếu không có file image_customer mới được tải lên, sử dụng ảnh cũ
-            $image_customer = $old_image_customer;
+            // Nếu không có file img_product mới được tải lên, sử dụng ảnh cũ
+            $img_product = $old_img_product;
         }
 
         // Tạo mảng dữ liệu để cập nhật
         $data = [
-            "name_customer" => $_POST['name_customer'] ?? NULL,
-            "password_customer" => $_POST['password_customer'] ?? NULL,
-            "email_customer" => $_POST['email_customer'] ?? NULL,
-            "phone_number" => $_POST['phone_number'] ?? NULL,
-            "address" => $_POST['address'] ?? NULL,
-            "role_id" => $_POST['role_id'] ?? NULL,
-            "image_customer" => $image_customer, // Gán giá trị của biến $image_customer vào mảng $data
+            "name_product" => $_POST['name_product'] ?? NULL,
+            "price" => $_POST['price'] ?? NULL,
+            "voucher" => $_POST['voucher'] ?? NULL,
+            "quantity" => $_POST['quantity'] ?? NULL,
+            "description" => $_POST['description'] ?? NULL,
+            "category_id" => $_POST['category_id'] ?? NULL,
+            "img_product" => $img_product, // Gán giá trị của biến $img_product vào mảng $data
         ];
 
         $errors = validateUpdateProduct($id, $data);
@@ -184,29 +163,16 @@ function productUpdate($id)
 function validateUpdateProduct($id, $data)
 {
     $errors = [];
-    if (empty($data['name_customer'])) {
+    if (empty($data['name_product'])) {
         $errors[] = "Không Để trống Name";
-    } else if (strlen($data['name_customer']) > 50) {
+    } else if (strlen($data['name_product']) > 50) {
         $errors[] = "Trường Name Độ Dài Tối Đa 50 Kí tự !";
     }
 
-    if (empty($data['email_customer'])) {
-        $errors[] = "Không Để trống email";
-    } else if (!filter_var($data['email_customer'], FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Trường email không đúng định dạng !";
-    } else if (!checkUniqueEMailUpdate('products', $id, $data['email_customer'])) {
-        $errors[] = "Email đã được sử dụng !";
-    }
 
-    if (empty($data['password_customer'])) {
-        $errors[] = "Không Để trống password";
-    } else if (strlen($data['password_customer']) < 8 || strlen($data['password_customer']) > 20) {
-        $errors[] = "Trường password phải có độ dài từ 8 đến 20 kí tự!";
-    }
-
-    if (empty($data['role_id'])) {
+    if (empty($data['category_id'])) {
         $errors[] = "Không Để trống role";
-    } else if (!in_array($data['role_id'], [1, 2])) {
+    } else if (!in_array($data['category_id'], [1, 2])) {
         $errors[] = "Trường role phải là 1 hoặc 2!";
     }
 
@@ -221,7 +187,7 @@ function validateUpdateProduct($id, $data)
 
 function productDelete($id)
 {
-    deleteCustomer('products', $id);
+    deleteProduct('products', $id);
     $_SESSION['success'] = ["Thao Tác THành Công !"];
 
     header('location: ' . BASE_URL_ADM . '?act=products');

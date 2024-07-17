@@ -7,7 +7,7 @@
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
-                                <a href="index.html"><img src="images/logo.png" alt="#" /></a>
+                                <a href="<?= BASE_URL ?>"><img src="images/logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -20,23 +20,13 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home</a>
+                                    <a class="nav-link" href="<?= BASE_URL ?>">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about.html">About</a>
+                                    <a class="nav-link" href="<?= BASE_URL ?>?act=category">Category</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="computer.html">Computer</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="laptop.html">Laptop</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="product.html">Products</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact Us</a>
-                                </li>
+
+
                                 <li class="nav-item d_none">
                                     <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                                 </li>
@@ -44,13 +34,13 @@
                                     <a class="nav-link" href="<?= BASE_URL . '?act=cart' ?>"><i class="fa-solid fa-cart-shopping"></i></a>
                                 </li>
                                 <li class="nav-item d_none">
-                                    <a class="nav-link" href="<?= BASE_URL_ADM ?>">Login</a>
+                                    <a class="nav-link" href="<?= BASE_URL . '?act=login' ?>">Login</a>
                                 </li>
-                                <!-- 
+
                                 <li class="nav-item d_none">
                                     <a class="nav-link" href="<?= BASE_URL ?>?act=logout">Logout</a>
 
-                                </li> -->
+                                </li>
                             </ul>
                         </div>
                     </nav>

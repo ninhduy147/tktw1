@@ -18,7 +18,7 @@
                                      <span>Computer And Laptop</span>
                                      <h1>Accessories</h1>
                                      <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or </p>
-                                     <a href="#">Buy Now </a> <a href="contact.html">Contact </a>
+                                     <a href="#">Buy Now </a> <a href=" contact.html">Contact </a>
                                  </div>
                              </div>
                              <div class="col-md-6">
@@ -159,7 +159,7 @@
          <div class="row">
              <div class="col-md-12">
                  <div class="titlepage">
-                     <h2>Our Products</h2>
+                     <h2>Popular Products</h2>
                  </div>
              </div>
          </div>
@@ -167,63 +167,15 @@
              <div class="col-md-12">
                  <div class="our_products">
                      <div class="row">
-                         <div class="col-md-4 margin_bottom1">
-                             <div class="product_box">
-                                 <figure><img src="images/product1.png" alt="#" /></figure>
-                                 <h3>Computer</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-4 margin_bottom1">
-                             <div class="product_box">
-                                 <figure><img src="images/product2.png" alt="#" /></figure>
-                                 <h3>Laptop</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-4 margin_bottom1">
-                             <div class="product_box">
-                                 <figure><img src="images/product3.png" alt="#" /></figure>
-                                 <h3>Tablet</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-4 margin_bottom1">
-                             <div class="product_box">
-                                 <figure><img src="images/product4.png" alt="#" /></figure>
-                                 <h3>Speakers</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-4 margin_bottom1">
-                             <div class="product_box">
-                                 <figure><img src="images/product5.png" alt="#" /></figure>
-                                 <h3>internet</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-4 margin_bottom1">
-                             <div class="product_box">
-                                 <figure><img src="images/product6.png" alt="#" /></figure>
-                                 <h3>Hardisk</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-4">
-                             <div class="product_box">
-                                 <figure><img src="images/product7.png" alt="#" /></figure>
-                                 <h3>Rams</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-4">
-                             <div class="product_box">
-                                 <figure><img src="images/product8.png" alt="#" /></figure>
-                                 <h3>Bettery</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-4">
-                             <div class="product_box">
-                                 <figure><img src="images/product9.png" alt="#" /></figure>
-                                 <h3>Drive</h3>
-                             </div>
-                         </div>
-                         <div class="col-md-12">
-                             <a class="read_more" href="#">See More</a>
-                         </div>
+                         <?php foreach ($postTop6Latest as $val) : ?>
+                             <a href="<?= BASE_URL ?>.?act=detail_product&id=<?= $val['product_id'] ?>" style="padding: 20px;" class="product">
+                                 <div class="item">
+                                     <img style="width:300px; height:400px" src="<?= BASE_URL . 'uploads/' . basename($val['img_product']) ?>" alt="">
+                                 </div>
+                                 <p class="name"><?= $val['name_product'] ?></p>
+                                 <p class="price"><?= $val['price'] ?> đ</p>
+                             </a>
+                         <?php endforeach; ?>
                      </div>
                  </div>
              </div>

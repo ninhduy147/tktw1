@@ -12,11 +12,11 @@ function customerListAll()
 
 function customerDetail($id)
 {
-    $customer = showOne('customers', $id);
+    $customer = showOneCustomer('customers', $id);
     if (empty($customer)) {
         e404();
     }
-    $title = 'Chi Tiết Customers' . $customer['name_customer'];
+    $title = 'Chi Tiết Customers : ' . $customer['name_customer'];
     $view = 'customers/detail_customer';
 
 
@@ -116,7 +116,7 @@ function validateCreate($data)
 function customerUpdate($id)
 {
     // Lấy thông tin người dùng theo id
-    $customer = showOne('customers', $id);
+    $customer = showOneCustomer('customers', $id);
 
     // Kiểm tra nếu người dùng không tồn tại
     if (empty($customer)) {

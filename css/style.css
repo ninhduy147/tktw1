@@ -335,7 +335,7 @@ ul.btn li:last-child {
 .navigation.navbar-dark .navbar-nav .nav-link.active,
 .navigation.navbar-dark .navbar-nav .nav-link.show,
 .navigation.navbar-dark .navbar-nav .show>.nav-link {
-     color: #51fe44;
+     color: white;
 }
 
 .navbar-expand-md .navbar-nav {

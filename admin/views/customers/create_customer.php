@@ -10,20 +10,7 @@
             <div class="col-md-6"></div>
         </div>
         <div class="card-body">
-            <?php if (isset($_SESSION['success'])) : ?>
-                <div class="alert alert-success">
-                    <ul>
-                        <?php foreach ($_SESSION['success'] as $seccess) : ?>
-                            <li style="
-                                list-style: none;
-                                margin-top: 10px;
-                                "><?= $seccess  ?>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-                <?php unset($_SESSION['success']); ?>
-            <?php endif; ?>
+
             <?php if (isset($_SESSION['errors'])) : ?>
                 <div class="alert alert-danger">
                     <ul>
