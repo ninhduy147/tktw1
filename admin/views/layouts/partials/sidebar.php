@@ -43,6 +43,14 @@
 
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="<?= BASE_URL_ADM ?>?act=categories" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Quản Lý Categories</span>
+        </a>
+
+    </li>
+
     <!-- Nav Item - Utilities Collapse Menu -->
 
 

@@ -1,66 +1,76 @@
-<?php 
+<?php
 
-// if (!function_exists('checkUniqueEMailProduct')) {
-//     function checkUniqueEMailProduct($tableName, $email)
-//     {
-//         try {
-//             $sql = "SELECT * FROM $tableName WHERE email_customer = :email_customer LIMIT 1";
 
-//             $stmt =  $GLOBALS['conn']->prepare($sql);
-//             $stmt->bindParam(":email_customer", $email);
 
-//             $stmt->execute();
-//             $datas = $stmt->fetch();
+//UPDATE PRODUCTS
+if (!function_exists('updateProduct')) {
+    function updateProduct($tableName, $id, $data = [])
+    {
+        try {
+            $setParams = get_set_params($data);
+            $sql = "
+                UPDATE $tableName 
+                SET   $setParams
+                WHERE product_id = :product_id
+            ";
 
-//             return empty($datas) ? true : false;
-//         } catch (\Exception $e) {
-//             debug($e);
-//         }
-//     };
-// };
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+            foreach ($data as $key => &$val) {
+                $stmt->bindParam(":$key", $val);
+            }
 
-// if (!function_exists('checkUniqueEMailUpdate')) {
-//     function checkUniqueEMailUpdate($tableName, $id, $email)
-//     {
-//         try {
-//             $sql = "SELECT * FROM $tableName WHERE email_customer = :email_customer AND customer_id <> :customer_id LIMIT 1";
+            // Thêm dấu : vào trước product_id
+            $stmt->bindParam(":product_id", $id);
 
-//             $stmt =  $GLOBALS['conn']->prepare($sql);
+            $stmt->execute();
+        } catch (\Exception $e) {
+            // Xử lý ngoại lệ ở đây
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}
 
-//             $stmt->bindParam(":email_customer", $email);
-//             $stmt->bindParam(":customer_id", $id);
 
-//             $stmt->execute();
+// READ DETAIL  PRODUCTS
+if (!function_exists('showOneProduct')) {
+    function showOneProduct($tableName, $id)
+    {
+        try {
+            $sql = "SELECT * FROM $tableName WHERE product_id = :product_id LIMIT 1";
 
-//             $datas = $stmt->fetch();
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":product_id", $id);
 
-//             return empty($datas) ? true : false;
-//         } catch (\Exception $e) {
-//             debug($e);
-//         }
-//     };
-// };
+            $stmt->execute();
 
-// if (!function_exists('getUserAdminByEmailAndPassword')) {
-//     function getUserAdminByEmailAndPassword($email_customer, $password_customer)
-//     {
-//         try {
-//             // Nếu mật khẩu được băm, hãy băm mật khẩu trước khi so sánh
-//             // $password_customer = md5($password_customer); // Sử dụng băm mật khẩu phù hợp, ví dụ: password_hash()
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    };
+};
 
-//             $sql = "SELECT * FROM customers WHERE email_customer = :email_customer AND password_customer = :password_customer AND role_id = 1 LIMIT 1";
+//DELETE PRODUCTS
+if (!function_exists('deleteProduct')) {
+    function deleteProduct($tableName, $id, $data = [])
+    {
+        try {
+            // $setParams = get_set_params($datas);
+            $sql = "
+                DELETE 
+                FROM $tableName
+                WHERE product_id = :product_id
+            ";
 
-//             $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt =  $GLOBALS['conn']->prepare($sql);
 
-//             $stmt->bindParam(":email_customer", $email_customer);
-//             $stmt->bindParam(":password_customer", $password_customer);
+            // Thêm dấu : vào trước product_id
+            $stmt->bindParam(":product_id", $id);
 
-//             $stmt->execute();
-
-//             return $stmt->fetch(PDO::FETCH_ASSOC);
-//         } catch (\Exception $e) {
-//             // Xử lý lỗi
-//             echo "Error: " . $e->getMessage();
-//         }
-//     }
-// }
+            $stmt->execute();
+        } catch (\Exception $e) {
+            // Xử lý ngoại lệ ở đâys
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}
