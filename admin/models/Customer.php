@@ -67,3 +67,104 @@ if (!function_exists('getUserByEmailAndPassword')) {
         }
     }
 }
+
+// READ DETAIL  CUSTOMER
+if (!function_exists('showOneCustomer')) {
+    function showOneCustomer($tableName, $id)
+    {
+        try {
+            $sql = "SELECT * FROM $tableName WHERE customer_id = :customer_id LIMIT 1";
+
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":customer_id", $id);
+
+            $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    };
+};
+
+
+
+//UPDATE CUSTOMERS
+if (!function_exists('update')) {
+    function update($tableName, $id, $data = [])
+    {
+        try {
+            $setParams = get_set_params($data);
+            $sql = "
+                UPDATE $tableName 
+                SET   $setParams
+                WHERE customer_id = :customer_id
+            ";
+
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+            foreach ($data as $key => &$val) {
+                $stmt->bindParam(":$key", $val);
+            }
+
+            // Thêm dấu : vào trước customer_id
+            $stmt->bindParam(":customer_id", $id);
+
+            $stmt->execute();
+        } catch (\Exception $e) {
+            // Xử lý ngoại lệ ở đây
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}
+
+
+
+//DELETE CUSTOMERS
+if (!function_exists('deleteCustomer')) {
+    function deleteCustomer($tableName, $id, $data = [])
+    {
+        try {
+            // $setParams = get_set_params($datas);
+            $sql = "
+                DELETE 
+                FROM $tableName
+                WHERE customer_id = :customer_id
+            ";
+
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+
+            // Thêm dấu : vào trước customer_id
+            $stmt->bindParam(":customer_id", $id);
+
+            $stmt->execute();
+        } catch (\Exception $e) {
+            // Xử lý ngoại lệ ở đâys
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}
+
+//DELETE PRODUCTS
+if (!function_exists('deleteProduct')) {
+    function deleteProduct($tableName, $id, $data = [])
+    {
+        try {
+            // $setParams = get_set_params($datas);
+            $sql = "
+                DELETE 
+                FROM $tableName
+                WHERE product_id = :product_id
+            ";
+
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+
+            // Thêm dấu : vào trước product_id
+            $stmt->bindParam(":product_id", $id);
+
+            $stmt->execute();
+        } catch (\Exception $e) {
+            // Xử lý ngoại lệ ở đâys
+            echo "Error: " . $e->getMessage();
+        }
+    }
+}

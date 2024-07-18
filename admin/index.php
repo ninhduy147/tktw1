@@ -39,6 +39,12 @@ $result = match ($act) {
     'products_update' => productUpdate($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
     'products_delete' => productDelete($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
 
+    // CRUD CATEGORIES
+    'categories' => categoryListAll(),
+    'categories_detail' => categoryDetail($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
+    'categories_create' => categoryCreate(),
+    'categories_update' => categoryUpdate($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
+    'categories_delete' => categoryDelete($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
 
     default => throw new Exception("Unknown action: $act"), // Thêm trường hợp mặc định
 };
