@@ -25,7 +25,10 @@ $arrRounteNeedAuth = [
     'cart-add',
     'cart-inc',
     'cart-dec',
-    'cart-del'
+    'cart-del',
+    'order',
+    'order_purchase',
+    'order_detail'
 ];
 
 // Kiểm tra đăng nhập chưa
@@ -39,11 +42,16 @@ $result = match ($act) {
     'logout' => authenLogout(),
 
     'cart' => cartList(),
-    'cart-add' => cartAdd($_GET['product_id'], $_GET['quantity']),
+    'cart-add' => cartAdd($_GET['product_id'], $_SESSION['customer']['customer_id'], $_GET['quantity']),
     'cart-inc' => cartInc($_GET['product_id']),
     'cart-dec' => cartDec($_GET['product_id']),
     'cart-del' => cartDel($_GET['product_id']),
 
+    'order' => orderCheckOut(),
+    'order_purchase' => orderPurchase(),
+    'order_success' => orderSuccess(),
+    'order_list' => orderListAllByCustomer($_SESSION['customer']['customer_id'] ?? null),
+    'order_detail' => orderDetailByCustomer($_SESSION['customer']['customer_id'], $_GET['id'] ?? null),
 
     'category' => categoryIndex(),
     'detail_product' => detailProduct($_GET['id'] ?? null),

@@ -46,6 +46,12 @@ $result = match ($act) {
     'categories_update' => categoryUpdate($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
     'categories_delete' => categoryDelete($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
 
+    // CRUD ORDERS
+    'orders' => orderListAll(),
+    'orders_detail' => orderDetail($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
+    'orders_update' => orderUpdate($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
+    'orders_delete' => orderDelete($_GET['id'] ?? null), // Kiểm tra tồn tại của $_GET['id']
+
     default => throw new Exception("Unknown action: $act"), // Thêm trường hợp mặc định
 };
 

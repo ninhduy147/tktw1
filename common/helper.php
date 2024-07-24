@@ -75,3 +75,22 @@ if (!function_exists('customer_middleware_auth_check')) {
         }
     }
 }
+
+
+
+if (!function_exists('caculater_total_order')) {
+    function caculater_total_order($customerId)
+    {
+
+
+        $carts = listCart($customerId);
+        if (isset($carts)) {
+            $total = 0;
+            foreach ($carts as $item) {
+                $price = $item['price'];
+                $total = $price * $item['quantity_cart'];
+            }
+            return number_format($total);
+        }
+    }
+}
