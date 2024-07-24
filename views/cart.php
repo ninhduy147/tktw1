@@ -29,14 +29,18 @@
                 <div class="card border shadow-0">
                     <div class="m-4">
                         <h4 class="card-title mb-4">Your shopping cart</h4>
+
                         <?php
-                        if (!empty($_SESSION['cart'])) :
-                            foreach ($_SESSION['cart'] as $val) : ?>
+                        $customerId = $_SESSION['customer']['customer_id'];
+                        $carts = listCart($customerId);
+                        if (!empty($carts)) :
+                            foreach ($carts as $val) : ?>
+
                                 <div class="row gy-3 mb-4">
                                     <div class="col-lg-5">
                                         <div class="me-lg-5">
                                             <div class="d-flex">
-                                                <img src="<?= BASE_URL . $val['img_product'] ?>" class="border rounded me-3" style="width: 96px; height: 96px;" />
+                                                <img src="<?= BASE_URL . str_replace('../', '', $val['img_product']) ?>" class="border rounded me-3" style="width: 96px; height: 96px;" />
                                                 <div class="">
                                                     <a href="#" class="nav-link"><?= $val['name_product'] ?></a>
 
@@ -53,16 +57,20 @@
                                                 height: 36px;
                                                 border-radius: 5px;
                                                 background-color: #ffffa9;">
-                                                <?= $val['quantity'] ?></button>
-                                            <a style="    z-index: 10;
-    position: relative;" href="<?= BASE_URL . '?act=cart-inc&product_id=' . $val['product_id'] ?>" class="btn btn-light border text-danger icon-hover-danger">+</a>
+                                                <?= $val['quantity_cart'] ?></button>
+                                            <a style=" z-index: 10;position: relative;" href="<?= BASE_URL . '?act=cart-inc&product_id=' . $val['product_id'] ?>" class="btn btn-light border text-danger icon-hover-danger">
+                                                +
+                                            </a>
 
                                         </div>
                                         <div class="">
-                                            <text style="margin-left:20px" class="h6"><?php
-                                                                                        $total =  $val['price'] * $val['quantity'];
-                                                                                        echo number_format($total);
-                                                                                        ?> VNĐ</text> <br />
+                                            <text style="margin-left:20px" class="h6">
+                                                <?php
+                                                $total =  $val['price'] * $val['quantity_cart'];
+                                                echo number_format($total);
+                                                ?> VNĐ
+                                            </text>
+                                            <br />
                                         </div>
                                     </div>
                                     <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
@@ -75,73 +83,7 @@
                             endforeach;
                         endif ?>
 
-                        <!-- <div class="row gy-3 mb-4">
-                            <div class="col-lg-5">
-                                <div class="me-lg-5">
-                                    <div class="d-flex">
-                                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/12.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                                        <div class="">
-                                            <a href="#" class="nav-link">Mens T-shirt Cotton Base</a>
-                                            <p class="text-muted">Blue, Medium</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                                <div class="">
-                                    <select style="width: 100px;" class="form-select me-4">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </div>
-                                <div class="">
-                                    <text class="h6">$44.80</text> <br />
-                                    <small class="text-muted text-nowrap"> $12.20 / per item </small>
-                                </div>
-                            </div>
-                            <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                                <div class="float-md-end">
-                                    <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                                    <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row gy-3">
-                            <div class="col-lg-5">
-                                <div class="me-lg-5">
-                                    <div class="d-flex">
-                                        <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/13.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                                        <div class="">
-                                            <a href="#" class="nav-link">Blazer Suit Dress Jacket for Men</a>
-                                            <p class="text-muted">XL size, Jeans, Blue</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                                <div class="">
-                                    <select style="width: 100px;" class="form-select me-4">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                    </select>
-                                </div>
-                                <div class="">
-                                    <text class="h6">$1156.00</text> <br />
-                                    <small class="text-muted text-nowrap"> $460.00 / per item </small>
-                                </div>
-                            </div>
-                            <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                                <div class="float-md-end">
-                                    <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                                    <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
 
                     <div class="border-top pt-4 mx-4 mb-4">
@@ -171,26 +113,14 @@
                 </div>
                 <div class="card shadow-0 border">
                     <div class="card-body">
+
                         <div class="d-flex justify-content-between">
                             <p class="mb-2">Total price:</p>
-                            <p class="mb-2">$329.00</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">Discount:</p>
-                            <p class="mb-2 text-success">-$60.00</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">TAX:</p>
-                            <p class="mb-2">$14.00</p>
-                        </div>
-                        <hr />
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">Total price:</p>
-                            <p class="mb-2 fw-bold">$283.00</p>
+                            <p class="mb-2 fw-bold"><?= total_order($customerId) ?> VNĐ</p>
                         </div>
 
                         <div class="mt-3">
-                            <a href="#" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
+                            <a href="<?= BASE_URL . '?act=order' ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
                             <a href="<?= BASE_URL ?>" class="btn btn-light w-100 border mt-2"> Back to shop </a>
                         </div>
                     </div>

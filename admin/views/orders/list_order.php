@@ -2,7 +2,6 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800"><?= $title ?>
-        <a href="<?= BASE_URL_ADM ?>?act=products_create" class="btn btn-primary">Create</a>
     </h1>
     <?php if (isset($_SESSION['success'])) : ?>
         <div class="alert alert-success">
@@ -28,20 +27,18 @@
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Name</th>
-                            <th>Image</th>
-                            <th>Description</th>
-                            <th>Quantity</th>
+                            <th>Name Customer</th>
+                            <th>Status</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>STT</th>
-                            <th>Name</th>
-                            <th>Image</th>
-                            <th>Description</th>
-                            <th>Quantity</th>
+                            <th>Name Customer</th>
+                            <th>Status</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -50,22 +47,18 @@
                     <tbody>
                         <?php
                         $stt = 1;
-                        foreach ($product as $val) :
+                        foreach ($order as $val) :
                         ?>
 
                             <tr>
                                 <td><?= $stt++ ?></td>
-                                <td><?= $val['name_product'] ?></td>
+                                <td><?= $val['name_customer'] ?></td>
+                                <td><?= $val['status_id'] == 4 ? '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-success">Completed</span>' : '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-warning">Draft</span>' ?></td>
+                                <td><?= $val['order_date'] ?></td>
                                 <td>
-                                    <img style="width:70px; height:70px" src="<?= $val['img_product'] ?>" alt="">
-                                </td>
-                                <td><?= $val['description'] ?>
-                                </td>
-                                <td><?= $val['quantity'] ?></td>
-                                <td>
-                                    <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=products_detail&id=<?= $val['product_id'] ?>">Show</a>
-                                    <a class="btn btn-warning" href="<?= BASE_URL_ADM ?>?act=products_update&id=<?= $val['product_id'] ?>">Update</a>
-                                    <a class="btn btn-danger" onclick="return confirm('Bạn Có Muốn Xóa ?')" href="<?= BASE_URL_ADM ?>?act=products_delete&id=<?= $val['product_id'] ?>">Delete</a>
+                                    <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=orders_detail&id=<?= $val['order_id'] ?>">Show</a>
+                                    <a class="btn btn-warning" href="<?= BASE_URL_ADM ?>?act=orders_update&id=<?= $val['order_id'] ?>">Update</a>
+                                    <a class="btn btn-danger" onclick="return confirm('Bạn Có Muốn Xóa ?')" href="<?= BASE_URL_ADM ?>?act=orders_delete&id=<?= $val['order_id'] ?>">Delete</a>
 
                                 </td>
                             </tr>

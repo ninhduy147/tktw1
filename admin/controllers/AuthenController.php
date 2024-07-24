@@ -42,9 +42,9 @@ function authenLogin()
 
     // Tiếp tục xử lý đăng nhập cho customer
     $customer = getUserByEmailAndPassword($_POST['email_customer'], $_POST['password_customer'], 2);
-
     if ($customer) {
         $_SESSION['customer'] = $customer;
+
         header('location:' . BASE_URL);
         exit();
     }
