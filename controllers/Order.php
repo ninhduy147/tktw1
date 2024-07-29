@@ -43,8 +43,7 @@ function  orderPurchase()
         } catch (\Exception $e) {
             debug($e);
         }
-        var_dump(header('location: ' . BASE_URL . '?act=order_success'));
-        die;
+
         header('location: ' . BASE_URL . '?act=order_success');
         exit();
     }

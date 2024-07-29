@@ -26,17 +26,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= BASE_URL ?>?act=category">Category</a>
                                 </li>
-                                <?php
-                                $customerId = $_SESSION['customer']['customer_id'];
-                                $carts = listCart($customerId);
-
-                                ?>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?= BASE_URL  ?>?act=order_list&id=<?= $_SESSION['customer']['customer_id'] ?>">Quản Lý Đơn Hàng</a>
-
-                                </li>
-
 
                                 <li class="nav-item d_none">
                                     <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>

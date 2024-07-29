@@ -38,17 +38,21 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th style="width:50px">STT</th>
+                            <th>STT</th>
                             <th>Name</th>
-                            <th style="width:400px">Status</th>
-                            <th style="width:300px">Date</th>
-                            <th style="width:150px">Action</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>STT</th>
                             <th>Name</th>
+                            <th>Phone</th>
+                            <th>Address</th>
                             <th>Status</th>
                             <th>Date</th>
                             <th>Action</th>
@@ -57,7 +61,9 @@
 
 
                     <tbody>
+
                         <?php
+
                         $stt = 1;
                         foreach ($order as $val) :
                         ?>
@@ -65,6 +71,8 @@
                             <tr>
                                 <td><?= $stt++ ?></td>
                                 <td><?= $val['name_customer'] ?></td>
+                                <td><?= $val['phone_number'] ?></td>
+                                <td><?= $val['address'] ?></td>
                                 <td><?= $val['status_id'] == 4 ? '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-success">Completed</span>' : '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-warning">Active</span>' ?></td>
                                 <td><?= $val['order_date'] ?></td>
                                 <td>
