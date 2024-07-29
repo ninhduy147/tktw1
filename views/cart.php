@@ -119,8 +119,10 @@
                             <p class="mb-2 fw-bold"><?= total_order($customerId) ?> VNĐ</p>
                         </div>
 
+
                         <div class="mt-3">
                             <a href="<?= BASE_URL . '?act=order' ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
+                            <a class="btn btn-warning w-100 shadow-0 mb-2" href="<?= BASE_URL  ?>?act=order_list&id=<?= $_SESSION['customer']['customer_id'] ?>">Quản Lý Đơn Hàng</a>
                             <a href="<?= BASE_URL ?>" class="btn btn-light w-100 border mt-2"> Back to shop </a>
                         </div>
                     </div>

@@ -1,8 +1,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800"><?= $title ?></h1>
-
+    <h1>Chi Tiết Order</h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
 
@@ -33,7 +32,7 @@
 
                 <?php endforeach ?>
             </table>
-            <a href="<?= BASE_URL_ADM ?>?act=orders" class="btn btn-danger">Back To List</a>
+            <a href="<?= BASE_URL ?>?act=order_list" class="btn btn-danger">Back To List</a>
         </div>
     </div>
 
