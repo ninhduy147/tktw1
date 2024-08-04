@@ -68,6 +68,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                     <h2 class="name">
                         <?= $product['name_product'] ?>
@@ -131,8 +132,8 @@
                             </div>
                             <div class="tab-pane fade" id="reviews">
                                 <br />
-                                <form method="post" class="well padding-bottom-10" onsubmit="return false;">
-                                    <textarea rows="2" class="form-control" name="content" placeholder="Write a review"></textarea>
+                                <form method="POST" class="well padding-bottom-10"">
+                                    <textarea rows=" 2" class="form-control" name="content" placeholder="Write a review"></textarea>
                                     <div class="margin-top-10">
                                         <button type="submit" class="btn btn-sm btn-primary pull-right">
                                             Submit Review
@@ -147,7 +148,7 @@
                                     <ul>
                                         <li class="message">
 
-                                            <img src="<?= BASE_URL . 'uploads/' . basename($order['img_product']) ?>" class="online" />
+                                            <img style="width:50px; height:50px" src="<?= BASE_URL . 'uploads/' . basename($order['image_customer']) ?>" class="online" />
                                             <span class="message-text">
                                                 <a href="javascript:void(0);" class="username">
                                                     <?= $order['name_customer'] ?>
@@ -161,13 +162,14 @@
                                                     </span> -->
                                                 </a>
                                                 <p><?= $order['content'] ?></p>
+
                                             </span>
                                             <ul class="list-inline font-xs">
                                                 <li>
                                                     <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
                                                 </li>
                                                 <li class="pull-right">
-                                                    <small class="text-muted pull-right ultra-light"> <?= $order['date'] ?> </small>
+                                                    <small class="text-muted pull-right ultra-light"> <?= $order['created_at'] ?> </small>
                                                 </li>
                                             </ul>
                                         </li>

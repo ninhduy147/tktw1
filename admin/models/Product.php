@@ -74,3 +74,19 @@ if (!function_exists('deleteProduct')) {
         }
     }
 }
+
+
+function listCate()
+{
+    try {
+        $sql = "SELECT * FROM categories ";
+
+        $stmt =  $GLOBALS['conn']->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\Exception $e) {
+        debug($e);
+    }
+};
