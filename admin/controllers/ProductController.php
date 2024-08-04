@@ -25,6 +25,7 @@ function productDetail($id)
 
 function productCreate()
 {
+    $listCate = listCate();
     $title = 'Tạo Products';
     $view = 'products/create_product';
     if (!empty($_POST)) {
@@ -48,6 +49,7 @@ function productCreate()
             "quantity" => $_POST['quantity'] ?? NULL,
             "category_id" => $_POST['category_id'] ?? NULL,
             "description" => $_POST['description'] ?? NULL,
+            "status_id" => $_POST['status_id'] ?? NULL,
             "img_product" => $img_product, // Gán giá trị của biến $img_product vào mảng $data
         ];
 
@@ -82,6 +84,12 @@ function validateCreateProduct($data)
         $errors[] = "Trường Name Độ Dài TỐi Đã 50 Kí tự !";
     }
 
+    if (empty($data['status_id'])) {
+        $errors[] = "Không Để trống status";
+    } else if (!in_array($data['status_id'], [5, 6])) {
+        $errors[] = "Trường status phải 5 or 6!";
+    }
+
     if (empty($data['category_id'])) {
         $errors[] = "Không Để trống role";
     } else if (!in_array($data['category_id'], [1, 2])) {
@@ -96,6 +104,7 @@ function productUpdate($id)
 {
     // Lấy thông tin người dùng theo id
     $product = showOneProduct('products', $id);
+    $listCate = listCate();
 
     // Kiểm tra nếu người dùng không tồn tại
     if (empty($product)) {
@@ -137,6 +146,7 @@ function productUpdate($id)
             "quantity" => $_POST['quantity'] ?? NULL,
             "description" => $_POST['description'] ?? NULL,
             "category_id" => $_POST['category_id'] ?? NULL,
+            "status_id" => $_POST['status_id'] ?? NULL,
             "img_product" => $img_product, // Gán giá trị của biến $img_product vào mảng $data
         ];
 
@@ -146,6 +156,7 @@ function productUpdate($id)
             $_SESSION['data'] = $data;
         } else {
             $_SESSION['success'] = ["Thao Tác THành Công !"];
+
             updateProduct('products', $id, $data);
         }
 
@@ -170,11 +181,11 @@ function validateUpdateProduct($id, $data)
     }
 
 
-    if (empty($data['category_id'])) {
-        $errors[] = "Không Để trống role";
-    } else if (!in_array($data['category_id'], [1, 2])) {
-        $errors[] = "Trường role phải là 1 hoặc 2!";
-    }
+    // if (empty($data['category_id'])) {
+    //     $errors[] = "Không Để trống role";
+    // } else if (!in_array($data['category_id'], [1, 2])) {
+    //     $errors[] = "Trường role phải là 1 hoặc 2!";
+    // }
 
     // Kiểm tra nếu không có lỗi mới trả về mảng rỗng
     if (empty($errors)) {
