@@ -56,6 +56,12 @@
             <span>Quản Lý Order</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="<?= BASE_URL_ADM ?>?act=comments" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Quản Lý Commnet</span>
+        </a>
+    </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
 
