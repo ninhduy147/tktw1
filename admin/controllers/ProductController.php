@@ -154,7 +154,7 @@ function productUpdate($id)
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
             $_SESSION['data'] = $data;
-        } else {
+        ~} else {
             $_SESSION['success'] = ["Thao Tác THành Công !"];
 
             updateProduct('products', $id, $data);
