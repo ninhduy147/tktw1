@@ -11,12 +11,12 @@ function  orderPurchase()
 {
     $customerId = $_SESSION['customer']['customer_id'];
     $carts = listCart($customerId);
-
     if (!empty($_POST) && !empty($carts)) {
         try {
 
             // Lưu Vào Bảng ORder vs detail_order
             $data = $_POST;
+
             $data['total_amount'] = total_order($_SESSION['customer']['customer_id']);
             $data['status_id'] = 1;
             $data['customer_id'] = $_SESSION['customer']['customer_id'];
@@ -26,10 +26,11 @@ function  orderPurchase()
             foreach ($carts as $productId => $item) {
                 $orderItem = [
                     'order_id' => $orderId,
-                    'product_id' => $productId,
-                    'quantity' => $item['quantity'],
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity_cart'],
                     'total' => $item['price']
                 ];
+
 
                 insert('detail_orders', $orderItem);
             }

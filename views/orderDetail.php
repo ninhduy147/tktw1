@@ -32,7 +32,7 @@
 
                 <?php endforeach ?>
             </table>
-            <a href="<?= BASE_URL ?>?act=order_list" class="btn btn-danger">Back To List</a>
+            <button style="padding: 10px; margin:20px"> <a href="<?= BASE_URL ?>?act=order_list" class="btn btn-danger">Back To List</a></button>
         </div>
     </div>
 

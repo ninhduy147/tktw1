@@ -112,6 +112,9 @@ if (!function_exists('listAllOrderCus')) {
             $sql = "SELECT * FROM orders as o 
                     INNER JOIN statuses as s ON o.status_id = s.status_id 
                     INNER JOIN customers as c ON o.customer_id = c.customer_id
+                    INNER JOIN detail_orders as dc ON o.order_id = dc.order_id
+                    INNER JOIN products as p ON dc.product_id = p.product_id
+
                     WHERE o.customer_id = :customer_id";
 
             $stmt =  $GLOBALS['conn']->prepare($sql);
