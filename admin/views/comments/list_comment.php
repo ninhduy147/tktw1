@@ -45,7 +45,7 @@
                             <th>Created_at</th>
                             <th>Content</th>
                             <th>Product_id</th>
-                            <th>Stautus_id</th>
+                            <th>Stautus</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -64,7 +64,8 @@
                                 <td><?= $val['created_at'] ?></td>
                                 <td><?= $val['content'] ?></td>
                                 <td><?= $val['product_id'] ?></td>
-                                <td><?= $val['status_id'] ?></td>
+                                <td><?= $val['status_id'] == 5 ? '<span class="badge badge-warning">Public</span>' : ($val['status_id'] == 6 ? '<span class="badge badge-success">Draft</span>' : '<span class="badge badge-secondary">Unknown</span>') ?>
+                                </td>
                                 <td>
                                     <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=comments_detail&id=<?= $val['comment_id'] ?>">Show</a>
                                     <a class="btn btn-warning" href="<?= BASE_URL_ADM ?>?act=comments_update&id=<?= $val['comment_id'] ?>">Update</a>
