@@ -121,9 +121,11 @@ function orderUpdate($id)
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
             $_SESSION['data'] = $data;
+            var_dump(123);
+            die;
         } else {
             $_SESSION['success'] = ["Thao Tác THành Công !"];
-            updateorder('orders', $id, $data);
+            updateOrder('orders', $id, $data);
         }
 
         // Gọi hàm update để cập nhật thông tin người dùng
@@ -152,8 +154,6 @@ function validateUpdateOrder($id, $data)
 
     if (empty($data['status_id'])) {
         $errors[] = "Không Để trống status";
-    } else if (!in_array($data['status_id'], [5, 6])) {
-        $errors[] = "Trường status phải 5 or 6!";
     }
 
     // Kiểm tra nếu không có lỗi mới trả về mảng rỗng
