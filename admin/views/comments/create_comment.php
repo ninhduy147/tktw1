@@ -39,18 +39,6 @@
                             </select>
                         </div>
                         <div class="mb-3 mt-3">
-                            <label for="order_id" class="form-label">Order:</label>
-                            <select name="order_id" id="order_id">
-                            <option value="">--Chọn--</option>
-                <?php
-                foreach ($data_comment_ord as $val) {
-                ?>
-                    <option value="<?php echo $val['order_id'] ?>"><?php echo $val['name'] ?></option>
-
-                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="mb-3 mt-3">
                             <label for="product_id" class="form-label">Product:</label>
                             <select name="product_id" id="product_id">
                             <option value="">--Chọn--</option>
@@ -73,7 +61,7 @@
 
                 <?php } ?>
                             </select> -->
-                            <label for="status_id" class="form-label">Category:</label>
+                            <label for="status_id" class="form-label">Stautus:</label>
                             <select name="status_id" id="status_id">
                                 <option value="">--Chọn--</option>
                                 <option <?= isset($_SESSION['data']) && $_SESSION['data']['status_id'] == 5 ? 'selected' : NULL ?> value="5">PUBLIC</option>

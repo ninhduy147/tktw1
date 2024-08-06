@@ -28,13 +28,11 @@ function commentsCreate()
     $title = 'Tạo comments';
     $view = 'comments/create_comment';
     $data_comment_prd = listProduct();
-    $data_comment_ord = listOrder();
     $data_comment_user = listCustomer();
     $data_comment_stt = listStatus();
     if (!empty($_POST)) {
         $data = [
             "customer_id" => $_POST['customer_id'] ?? NULL,
-            "order_id" => $_POST['order_id'] ?? NULL,
             "product_id" => $_POST['product_id'] ?? NULL,
             "status_id" => $_POST['status_id'] ?? NULL,
             "content" => $_POST['content'] ?? NULL,

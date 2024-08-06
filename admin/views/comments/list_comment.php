@@ -28,23 +28,21 @@
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Customer_Id</th>
-                            <th>Oder_id</th>
+                            <th>Customer</th>
                             <th>Created_at</th>
                             <th>Content</th>
-                            <th>Product_id</th>
-                            <th>Stautus_id</th>
+                            <th>Product</th>
+                            <th>Stautus</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>STT</th>
-                            <th>Customer_Id</th>
-                            <th>Oder_id</th>
+                            <th>Customer</th>
                             <th>Created_at</th>
                             <th>Content</th>
-                            <th>Product_id</th>
+                            <th>Product</th>
                             <th>Stautus</th>
                             <th>Action</th>
                         </tr>
@@ -59,11 +57,10 @@
 
                             <tr>
                                 <td><?= $stt++ ?></td>
-                                <td><?= $val['customer_id'] ?></td>
-                                <td><?= $val['order_id'] ?></td>
+                                <td><?= $val['name_customer'] ?></td>
                                 <td><?= $val['created_at'] ?></td>
                                 <td><?= $val['content'] ?></td>
-                                <td><?= $val['product_id'] ?></td>
+                                <td><?= $val['name_product'] ?></td>
                                 <td><?= $val['status_id'] == 5 ? '<span class="badge badge-warning">Public</span>' : ($val['status_id'] == 6 ? '<span class="badge badge-success">Draft</span>' : '<span class="badge badge-secondary">Unknown</span>') ?>
                                 </td>
                                 <td>

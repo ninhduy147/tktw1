@@ -78,10 +78,10 @@ if (!function_exists('getDetailProduct')) {
             $sql =  'SELECT * FROM comments 
                     INNER JOIN products ON products.product_id = comments.product_id
                     INNER JOIN customers ON customers.customer_id = comments.customer_id
-                    WHERE comments.comment_id = :comment_id ';
+                    WHERE products.product_id = :product_id ';
 
             $stmt = $GLOBALS['conn']->prepare($sql);
-            $stmt->bindParam(':comment_id', $id);
+            $stmt->bindParam(':product_id', $id);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (\Exception $e) {

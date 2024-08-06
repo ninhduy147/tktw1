@@ -51,14 +51,28 @@
                             <label for="category_id" class="form-label">Category:</label>
                             <select name="category_id" id="category_id">
                                 <option value="">--Chọn--</option>
-                                <option <?= isset($_SESSION['data']) && $_SESSION['data']['category_id'] == 1 ? 'selected' : NULL ?> value="1">SamSung</option>
-                                <option <?= isset($_SESSION['data']) && $_SESSION['data']['category_id'] == 2 ? 'selected' : NULL ?> value="2">IPhone</option>
+                                <?php
+                                foreach ($listCate as $val) {
+                                ?>
+                                    <option value="<?php echo $val['category_id'] ?>"><?php echo $val['name'] ?></option>
+
+                                <?php } ?>
                             </select>
+
+
                         </div>
 
                         <div class="mb-3 mt-3">
                             <label for="img_product" class="form-label">Image:</label>
                             <input type="file" id="summernote" name="img_product">
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="status_id" class="form-label">Status:</label>
+                            <select name="status_id" id="status_id">
+                                <option value="">--Chọn--</option>
+                                <option <?= isset($_SESSION['data']) && $_SESSION['data']['status_id'] == 5 ? 'selected' : NULL ?> value="5">Public</option>
+                                <option <?= isset($_SESSION['data']) && $_SESSION['data']['status_id'] == 6 ? 'selected' : NULL ?> value="6">Draft</option>
+                            </select>
                         </div>
 
                     </div>

@@ -17,12 +17,12 @@
                         <th><?= ucfirst($fileName) ?></th>
                         <th>
                             <?php
+
                             switch ($fileName) {
 
-                                case 'comment_id':
-                                    echo $values == 4 ? '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-success">Completed</span>' : '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-warning">Draft</span>';
+                                case 'status_id':
+                                    echo $values == 5 ? '<span class="badge badge-warning">Public</span>' : ($values == 6 ? '<span class="badge badge-success">Draft</span>' : '<span class="badge badge-secondary">Unknown</span>');
                                     break;
-
                                 default:
                                     echo $values;
                                     break;

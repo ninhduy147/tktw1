@@ -19,11 +19,12 @@ function detailProduct($id)
 
     if (!empty($_POST)) {
 
-        $datas = [
+        $data = [
             "content" => $_POST['content'] ?? NULL,
         ];
-
-        update('comments', $datas);
+        var_dump($data);
+        die;
+        insert('comments', $data);
 
 
         $_SESSION['suscess'] = "Thao Tác THành Công !";

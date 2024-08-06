@@ -6,7 +6,6 @@ if (!function_exists('listAllCommnet')) {
     {
         try {
             $sql = "SELECT * FROM comments as o 
-                    INNER JOIN orders as s ON o.order_id = s.order_id 
                     INNER JOIN products as g ON o.product_id = g.product_id 
                      INNER JOIN statuses as f ON o.status_id = f.status_id 
                     INNER JOIN customers as c ON o.customer_id = c.customer_id";
