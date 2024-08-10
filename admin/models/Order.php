@@ -109,9 +109,9 @@ if (!function_exists('showOneOrder')) {
     function showOneOrder($tableName, $id)
     {
         try {
-            $sql = "SELECT * FROM $tableName as o
+            $sql = "SELECT * FROM $tableName 
                     -- INNER JOIN detail_orders as d ON o.order_id = d .order_id   
-                    WHERE o.order_id = :order_id ";
+                    WHERE order_id = :order_id ";
 
             $stmt =  $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(":order_id", $id);

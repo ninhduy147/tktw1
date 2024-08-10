@@ -61,7 +61,6 @@ function orderSuccess()
 
 function orderListAllByCustomer($customerId)
 {
-    $carts = listCart($customerId);
 
 
     $order = listAllOrderCus($customerId);
@@ -71,7 +70,7 @@ function orderListAllByCustomer($customerId)
 
 function orderDetailByCustomer($customerId, $id)
 {
-    $listAllOrder = listAllOrderCus($customerId);
+    $listAllOrder = listAllOrderCusByID($customerId, $id);
     $order = showOneOrder('orders', $id);
 
     if (empty($order)) {

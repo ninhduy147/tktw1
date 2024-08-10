@@ -26,40 +26,40 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                    <div class="mb-3 mt-3">
+                        <div class="mb-3 mt-3">
                             <label for="customer_id" class="form-label">Customer:</label>
                             <select name="customer_id" id="customer_id">
-                            <option value="">--Chọn--</option>
-                <?php
-                foreach ($data_comment_user as $val) {
-                ?>
-                    <option value="<?php echo $val['customer_id'] ?>"><?php echo $val['name_customer'] ?></option>
+                                <option value="">--Chọn--</option>
+                                <?php
+                                foreach ($data_comment_user as $val) {
+                                ?>
+                                    <option value="<?php echo $val['customer_id'] ?>"><?php echo $val['name_customer'] ?></option>
 
-                <?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="order_id" class="form-label">Order:</label>
                             <select name="order_id" id="order_id">
-                            <option value="">--Chọn--</option>
-                <?php
-                foreach ($data_comment_ord as $val) {
-                ?>
-                    <option value="<?php echo $val['order_id'] ?>"><?php echo $val['name'] ?></option>
+                                <option value="">--Chọn--</option>
+                                <?php
+                                foreach ($data_comment_ord as $val) {
+                                ?>
+                                    <option value="<?php echo $val['order_id'] ?>"><?php echo $val['order_id'] ?></option>
 
-                <?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="product_id" class="form-label">Product:</label>
                             <select name="product_id" id="product_id">
-                            <option value="">--Chọn--</option>
-                <?php
-                foreach ($data_comment_prd as $val) {
-                ?>
-                    <option value="<?php echo $val['product_id'] ?>"><?php echo $val['name_product'] ?></option>
+                                <option value="">--Chọn--</option>
+                                <?php
+                                foreach ($data_comment_prd as $val) {
+                                ?>
+                                    <option value="<?php echo $val['product_id'] ?>"><?php echo $val['name_product'] ?></option>
 
-                <?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="mb-3 mt-3">
@@ -87,9 +87,9 @@
 
                         </div>
 
-                    </div>               
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="<?= BASE_URL_ADM ?>?act=comments" class="btn btn-danger">Back To List</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="<?= BASE_URL_ADM ?>?act=comments" class="btn btn-danger">Back To List</a>
 
             </form>
         </div>

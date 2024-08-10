@@ -145,7 +145,7 @@ function productUpdate($id)
             "voucher" => $_POST['voucher'] ?? NULL,
             "quantity" => $_POST['quantity'] ?? NULL,
             "description" => $_POST['description'] ?? NULL,
-            "category_id" => $_POST['category_id'] ?? NULL,
+            "category_id" => $_POST['category_id'],
             "status_id" => $_POST['status_id'] ?? NULL,
             "img_product" => $img_product, // Gán giá trị của biến $img_product vào mảng $data
         ];
@@ -181,12 +181,9 @@ function validateUpdateProduct($id, $data)
     }
 
 
-    // if (empty($data['category_id'])) {
-    //     $errors[] = "Không Để trống role";
-    // } else if (!in_array($data['category_id'], [1, 2])) {
-    //     $errors[] = "Trường role phải là 1 hoặc 2!";
-    // }
-
+    if (empty($data['category_id'])) {
+        $errors[] = "Không Để trống Danh Mục";
+    }
     // Kiểm tra nếu không có lỗi mới trả về mảng rỗng
     if (empty($errors)) {
         return [];

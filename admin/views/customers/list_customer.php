@@ -31,7 +31,7 @@
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Role</th>
-                            <th>Image</th>
+                            <th>Address</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,7 +41,7 @@
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Role</th>
-                            <th>Image</th>
+                            <th>Address</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

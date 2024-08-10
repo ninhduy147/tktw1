@@ -221,6 +221,7 @@ function validateUpdate($id, $data)
 
 function customerDelete($id)
 {
+
     deleteCustomer('customers', $id);
     $_SESSION['success'] = ["Thao Tác THành Công !"];
 
