@@ -65,7 +65,7 @@
                                 <?php
                                 foreach ($listCate as $val) {
                                 ?>
-                                    <option value="<?php echo $val['category_id'] ?>"><?php echo $val['name'] ?></option>
+                                    <option value="<?php echo $val['category_id'] ?>" <?= $product['category_id'] == $val['category_id'] ? "selected" : "" ?>><?php echo $val['name'] ?></option>
 
                                 <?php } ?>
                             </select>

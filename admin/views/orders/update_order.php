@@ -37,7 +37,7 @@
                                 <?php
                                 foreach ($statuses as $val) {
                                 ?>
-                                    <option value="<?php echo $val['status_id'] ?>"><?php echo $val['status_name'] ?></option>
+                                    <option value="<?php echo $val['status_id'] ?>" <?= $order['status_id'] == $val['status_id'] ? "selected" : "" ?>><?php echo $val['status_name'] ?></option>
 
                                 <?php } ?>
                             </select>
