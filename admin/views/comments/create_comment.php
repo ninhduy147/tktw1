@@ -38,7 +38,7 @@
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="mb-3 mt-3">
+                        <div class="mb-3 ~mt-3">
                             <label for="order_id" class="form-label">Order:</label>
                             <select name="order_id" id="order_id">
                                 <option value="">--Chọn--</option>
