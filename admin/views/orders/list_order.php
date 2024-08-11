@@ -58,7 +58,6 @@
                                 <td>
                                     <a class="btn btn-info" href="<?= BASE_URL_ADM ?>?act=orders_detail&id=<?= $val['order_id'] ?>">Show</a>
                                     <a class="btn btn-warning" href="<?= BASE_URL_ADM ?>?act=orders_update&id=<?= $val['order_id'] ?>">Update</a>
-                                    <a class="btn btn-danger" onclick="return confirm('Bạn Có Muốn Xóa ?')" href="<?= BASE_URL_ADM ?>?act=orders_delete&id=<?= $val['order_id'] ?>">Delete</a>
 
                                 </td>
                             </tr>

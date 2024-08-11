@@ -92,8 +92,6 @@ function validateCreateProduct($data)
 
     if (empty($data['category_id'])) {
         $errors[] = "Không Để trống role";
-    } else if (!in_array($data['category_id'], [1, 2])) {
-        $errors[] = "Trường role phải 1 or 2!";
     }
 
     return $errors;
