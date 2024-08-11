@@ -136,6 +136,8 @@ function cartDel($product_id)
 {
     // Lấy thông tin sản phẩm
     $product = showOneProduct('products', $product_id);
+
+
     $customerId = $_SESSION['customers']['customer_id'];
 
     // Nếu sản phẩm không tồn tại, hiển thị lỗi và dừng thực thi

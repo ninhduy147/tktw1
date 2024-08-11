@@ -109,7 +109,8 @@ if (!function_exists('listAllOrderCus')) {
     function listAllOrderCus($customerID)
     {
         try {
-            $sql = "SELECT * FROM orders as o 
+            $sql = "SELECT o.order_id,p.name_product,dc.quantity,dc.total, o.status_id,o.order_date
+                    FROM orders as o 
                     INNER JOIN statuses as s ON o.status_id = s.status_id 
                     INNER JOIN customers as c ON o.customer_id = c.customer_id
                     INNER JOIN detail_orders as dc ON o.order_id = dc.order_id
@@ -119,6 +120,32 @@ if (!function_exists('listAllOrderCus')) {
 
             $stmt =  $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(":customer_id", $customerID);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (\Exception $e) {
+            debug($e);
+        }
+    };
+};
+
+if (!function_exists('listDetailOrderCus')) {
+    function listDetailOrderCus($customerID, $id)
+    {
+        try {
+            $sql = "SELECT o.order_id,p.name_product,dc.quantity,dc.total, o.status_id,o.order_date,c.name_customer,p.img_product,o.address,o.phone_number
+                    FROM orders as o 
+                    INNER JOIN statuses as s ON o.status_id = s.status_id 
+                    INNER JOIN customers as c ON o.customer_id = c.customer_id
+                    INNER JOIN detail_orders as dc ON o.order_id = dc.order_id
+                    INNER JOIN products as p ON dc.product_id = p.product_id
+
+                    WHERE o.customer_id = :customer_id AND o.order_id = :order_id";
+
+            $stmt =  $GLOBALS['conn']->prepare($sql);
+            $stmt->bindParam(":customer_id", $customerID);
+            $stmt->bindParam(":order_id", $id);
 
             $stmt->execute();
 

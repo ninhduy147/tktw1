@@ -71,12 +71,10 @@ function orderListAllByCustomer($customerId)
 
 function orderDetailByCustomer($customerId, $id)
 {
-    $listAllOrder = listAllOrderCus($customerId);
-    $order = showOneOrder('orders', $id);
+    $listAllOrder = listDetailOrderCus($customerId, $id);
 
-    if (empty($order)) {
-        e404();
-    }
+
+
 
 
 

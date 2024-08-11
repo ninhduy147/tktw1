@@ -68,7 +68,7 @@
                                 <td><?= $val['order_id'] ?></td>
                                 <td><?= $val['name_product'] ?></td>
                                 <td><?= $val['quantity'] ?></td>
-                                <td><?= $val['total_amount'] ?></td>
+                                <td><?= $val['total'] ?></td>
                                 <td><?= $val['status_id'] == 4 ? '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-success">Completed</span>' : '<span style="width: 70px;height: 27px;padding-top: 8px;" class="badge badge-warning">Active</span>' ?></td>
                                 <td><?= $val['order_date'] ?></td>
                                 <td> <button><a class="btn btn-info" href="<?= BASE_URL ?>?act=order_detail&id=<?= $val['order_id'] ?>">Show</a></button></td>

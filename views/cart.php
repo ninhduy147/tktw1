@@ -116,7 +116,7 @@
 
                         <div class="d-flex justify-content-between">
                             <p class="mb-2">Total price:</p>
-                            <p class="mb-2 fw-bold"><?= total_order($customerId) ?> VNĐ</p>
+                            <p class="mb-2 fw-bold"><?= number_format(total_order($customerId)) ?> VNĐ</p>
                         </div>
 
 
