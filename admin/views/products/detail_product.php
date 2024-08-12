@@ -8,10 +8,7 @@
 
         <div class="card-body">
             <table class="table">
-                <tr>
-                    <th>Trường Dữ Liệu</th>
-                    <th>Dữ Liệu</th>
-                </tr>
+
                 <?php foreach ($product as $fileName => $values) : ?>
                     <tr>
                         <th><?= ucfirst($fileName) ?></th>

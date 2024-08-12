@@ -61,6 +61,7 @@ function customerCreate()
             exit();
         }
 
+
         insert('customers', $data);
 
 
@@ -165,6 +166,8 @@ function customerUpdate($id)
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
             $_SESSION['data'] = $data;
+            var_dump($errors);
+            die;
         } else {
             $_SESSION['success'] = ["Thao Tác THành Công !"];
             update('customers', $id, $data);
@@ -198,11 +201,7 @@ function validateUpdate($id, $data)
         $errors[] = "Email đã được sử dụng !";
     }
 
-    if (empty($data['password_customer'])) {
-        $errors[] = "Không Để trống password";
-    } else if (strlen($data['password_customer']) < 8 || strlen($data['password_customer']) > 20) {
-        $errors[] = "Trường password phải có độ dài từ 8 đến 20 kí tự!";
-    }
+
 
     if (empty($data['role_id'])) {
         $errors[] = "Không Để trống role";
