@@ -166,8 +166,6 @@ function customerUpdate($id)
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
             $_SESSION['data'] = $data;
-            var_dump($errors);
-            die;
         } else {
             $_SESSION['success'] = ["Thao Tác THành Công !"];
             update('customers', $id, $data);

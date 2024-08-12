@@ -137,8 +137,7 @@ function cartDel($product_id)
     // Lấy thông tin sản phẩm
     $product = showOneProduct('products', $product_id);
 
-
-    $customerId = $_SESSION['customers']['customer_id'];
+    $customerId = $_SESSION['customer']['customer_id'];
 
     // Nếu sản phẩm không tồn tại, hiển thị lỗi và dừng thực thi
     if (empty($product)) {
@@ -146,8 +145,9 @@ function cartDel($product_id)
         return;
     }
 
+
     // Xóa sản phẩm khỏi session cart
-    if (isset(listCart($customerId)[$product_id])) {
+    if (!isset(listCart($customerId)[$product_id])) {
         unset(listCart($customerId)[$product_id]);
 
         // Lấy cart_id của người dùng hiện tại

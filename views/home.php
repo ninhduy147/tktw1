@@ -15,6 +15,7 @@
                          <div class="row">
                              <div class="col-md-6">
                                  <div class="text-bg">
+
                                      <span>Computer And Laptop</span>
                                      <h1>Accessories</h1>
                                      <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or </p>
